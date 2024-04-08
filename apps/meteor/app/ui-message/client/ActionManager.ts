@@ -89,7 +89,8 @@ export class ActionManager implements IActionManager {
 				} finally {
 					switch (userInteraction.type) {
 						case 'viewSubmit':
-							if (!!interaction && interaction.type !== 'errors') this.disposeView(userInteraction.viewId);
+							if (!!interaction && !['errors', 'modal.update', 'contextual_bar.update'].includes(interaction.type))
+								this.disposeView(userInteraction.viewId);
 							break;
 
 						case 'viewClosed':
